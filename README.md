@@ -1,4 +1,3 @@
-
 # ![ECPTextStream](/docs/assets/img/ECPTextStream.png)
 [![GitHub](https://img.shields.io/github/license/ws-garcia/ECPTextStream?style=plastic)](https://github.com/ws-garcia/ECPTextStream/blob/main/LICENSE) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ws-garcia/ECPTextStream?style=plastic)](https://github.com/ws-garcia/ECPTextStream/releases/latest)
 
