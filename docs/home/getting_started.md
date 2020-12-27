@@ -46,7 +46,7 @@ Sub StreamCSV()
     Path = "C:\16000000.quoted.csv"
     Set TextStream = New ECPTextStream
     TextStream.OpenStream Path
-	 TextStream.EndStreamOnLineBreak = True
+    TextStream.EndStreamOnLineBreak = True
     Do While Not TextStream.AtEndOfStream
         TextStream.ReadLines
     Loop
