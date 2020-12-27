@@ -3,7 +3,7 @@ layout: default
 title: Home
 has_children: true
 nav_order: 1
-description: "ECPTextStream is an easy-to-use class module developed to enable I/O operations over "big" text files, at high speed, from VBA."
+description: "ECPTextStream Home."
 ---
 
 # Introductory things
