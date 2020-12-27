@@ -173,7 +173,7 @@ The image bellow shows the overall performance for the read file operations.
 
 ### Conclusions
 
-- `ECPTextStream` is the fastest way to access to “big” text files content from VBA.
+- `ECPTextStream` buffered read is 6x times faster than the `FileSystemObject` (FSO) counterpart, with both working from VBA.
 - Open text file for Binary access is faster than other methods.
 - The VBA performance is, apparently, linked to memory load. This can explain the performance drop of procedures for read the whole text file's content at once.
 - Read file using buffer is faster than read the whole file.
