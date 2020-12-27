@@ -3,7 +3,7 @@
 
 ## Introductory words
 
-ECPTextStream is an easy-to-use class module developed to enable I/O operations over "big" text files, at high speed, from VBA.
+ECPTextStream is an easy-to-use class module developed to enable buffered text stream on VBA. In other words, ECPTextStream is a VBA text buffered reader designed to manage text streams in Microsoft Office applications.
 
 ## Advantages
 * The fastest way for I/O operations over "big" text files from VBA (up to 600 MB/sec.).
