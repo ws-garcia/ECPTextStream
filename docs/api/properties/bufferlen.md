@@ -8,7 +8,7 @@ nav_order: 2
 # BufferLen
 {: .fs-9 }
 
-Gets the number of string characters in the buffer
+Gets the number of string characters in the buffer.
 {: .fs-6 .fw-300 }
 
 ---

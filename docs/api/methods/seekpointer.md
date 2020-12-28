@@ -27,7 +27,7 @@ _None_
 
 >📝**Note**
 >{: .text-grey-lt-000 .bg-green-000 }
->The next read operation will start in the position specified with the `SeekPointer` method. 
+>The next I/O operation will start in the position specified with the `SeekPointer` method. 
 {: .text-grey-dk-300 .bg-grey-lt-000 }
 
 See also
