@@ -162,7 +162,7 @@ Sub ScriptingBufferedRead(FilePath As String, ByRef OutputStr As String)
 End Sub
 ```
 
-The image bellow shows the overall performance for the read file operations.
+The image below shows the overall performance for the read operations.
 
 ![TextRead-Benchmark](TextRead-Benchmark.png)
 
