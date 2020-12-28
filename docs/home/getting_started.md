@@ -85,7 +85,7 @@ End Sub
 
 ## Benchmark
 
-The ECPTextStream class was tested with files from 191 MB to 1.87 GB of size, you can download the test files from [here](https://github.com/downloads/ws-garcia/ECPTextStream/test-assets/BigTextFiles.zip). Below is showed the procedures for stablish the benchmark for the read operations. Some procedures are available on internet.
+The ECPTextStream class was tested with files from 191 MB to 1.87 GB of size, you can download the test files from [here](https://github.com/ws-garcia/ECPTextStream/raw/main/test-assets/BigTextFiles.zip). Below is showed the procedures for stablish the benchmark for the read operations. Some procedures are available on internet.
 
 ```vb
 Sub BufferedRead(FilePath As String)
