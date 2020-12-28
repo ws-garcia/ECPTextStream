@@ -171,13 +171,12 @@ The image bellow shows the overall performance for the read file operations.
 >The procedures for read the whole file content at once, fails dealing with the 1.49 and 1.87 GB files. The `ScriptingWholeFileRead` procedure crash Excel and cause its restart, the rest of this kind of procedures cause a VBA exception when working over the cited files.
 {: .text-grey-dk-300 .bg-grey-lt-000 }
 
-## Conclusions
+### Conclusions
 
 - `ECPTextStream` buffered read is 6x times faster than the `FileSystemObject` (FSO) counterpart, with both working from VBA.
 - Open text file for Binary access is faster than other methods.
 - The VBA performance is, apparently, linked to memory load. This can explain the performance drop of procedures for read the whole text file's content at once.
 - Read file using buffer is faster than read the whole file.
-- Use VBA internal functions is faster than make calls to external APIs for Office coded programs.
 
 ## Licence
 
