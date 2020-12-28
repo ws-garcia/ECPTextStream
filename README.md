@@ -28,7 +28,7 @@ The benchmark results for ECPTextStream are available at [this site](https://ws-
 
 ## Limitations
 
-Visit [this site](https://ws-garcia.github.io/ECPTextStream/limitations/file_size.html) in order to known around file size considerations.
+Visit [this site](https://ws-garcia.github.io/ECPTextStream/limitations/index.html) in order to known around file size considerations.
 
 ## Licence
 
