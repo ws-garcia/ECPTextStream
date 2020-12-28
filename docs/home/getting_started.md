@@ -48,7 +48,7 @@ Sub StreamCSV()
     TextStream.OpenStream Path
     TextStream.EndStreamOnLineBreak = True
     Do While Not TextStream.AtEndOfStream
-        TextStream.ReadLines
+        TextStream.ReadText
     Loop
     TextStream.CloseStream
     Set TextStream = Nothing
@@ -70,7 +70,7 @@ Sub StreamAndSave()
     TextStream.EndStreamOnLineBreak = True
     ReDim tmpArray(0 To Fix(TextStream.StreamLength / TextStream.BufferLen) + 1)
     Do While Not TextStream.AtEndOfStream
-        TextStream.ReadLines
+        TextStream.ReadText
         tmpArray(i) = TextStream.BufferString
         i = i + 1
     Loop
@@ -94,7 +94,7 @@ Sub BufferedRead(FilePath As String)
     Set TextStream = New ECPTextStream
     TextStream.OpenStream FilePath
     Do While Not TextStream.AtEndOfStream
-        TextStream.ReadLines
+        TextStream.ReadText
     Loop
     TextStream.CloseStream
     Set TextStream = Nothing
