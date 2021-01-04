@@ -32,7 +32,7 @@ _None_
 *Type*: `Long`
 
 See also
-: [OpenStream Method](https://ws-garcia.github.io/ECPTextStream/api/methods/openstream.html), [BufferSize Property](https://ws-garcia.github.io/ECPTextStream/api/properties/buffersize.html), [BufferLen Property](https://ws-garcia.github.io/ECPTextStream/api/properties/bufferlen.html).
+: [OpenStream Method](https://ws-garcia.github.io/ECPTextStream/api/methods/openstream.html), [BufferSize Property](https://ws-garcia.github.io/ECPTextStream/api/properties/buffersize.html), [BufferLength Property](https://ws-garcia.github.io/ECPTextStream/api/properties/bufferlength.html).
 
 ---
 

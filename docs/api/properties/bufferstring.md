@@ -32,7 +32,7 @@ _None_
 *Type*: `String`
 
 See also
-: [ReadText Method](https://ws-garcia.github.io/ECPTextStream/api/methods/readtext.html), [BufferSize Property](https://ws-garcia.github.io/ECPTextStream/api/properties/buffersize.html), [BufferLen Property](https://ws-garcia.github.io/ECPTextStream/api/properties/bufferlen.html).
+: [ReadText Method](https://ws-garcia.github.io/ECPTextStream/api/methods/readtext.html), [BufferSize Property](https://ws-garcia.github.io/ECPTextStream/api/properties/buffersize.html), [BufferLength Property](https://ws-garcia.github.io/ECPTextStream/api/properties/bufferlength.html).
 
 ---
 

@@ -1,11 +1,11 @@
 ---
-title: BufferLen
+title: BufferLength
 parent: Properties
 grand_parent: API
 nav_order: 2
 ---
 
-# BufferLen
+# BufferLength
 {: .fs-9 }
 
 Gets the number of string characters in the buffer.
@@ -21,7 +21,7 @@ _ReadOnly_
 
 ## Syntax
 
-*expression*.`BufferLen`
+*expression*.`BufferLength`
 
 ### Parameters
 
