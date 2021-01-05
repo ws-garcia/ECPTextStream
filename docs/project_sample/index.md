@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Project_Sample
+title: Sample Project
 has_children: false
 nav_order: 5
 ---
