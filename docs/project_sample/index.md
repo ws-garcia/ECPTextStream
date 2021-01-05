@@ -19,6 +19,6 @@ The tool covered here, which can be downloaded [from this link](https://github.c
 
 The image below shows the benchmark for the test.
 
-
+![Split-BenchMark](Split-BenchMark.png)
 
 As we can see, the performance limitations of VBA can be mitigated when proper techniques are used to perform a certain task. By its way, the [Free Huge CSV Splitter](https://sourceforge.net/projects/splitcsv/) spences more than 90 seconds to split the 0.75 GB file.
