@@ -32,6 +32,7 @@ Private P_ATENDOFSTREAM As Boolean '---------------Indicates if the file's end i
 Private P_BUFFERLENGTH As Long '-------------------Number of chars in buffer.
 Private P_BUFFERSIZE As Single '-------------------Buffer's size in MB (0.5 by default).
 Private P_ENDSTREAMONLINEBREAK As Boolean '--------If true, each stream ends on a line break.
+Private P_LINEBREAK As String '--------------------Holds the char used to end a Stream.
 Private P_STREAMLENGTH As Long '-------------------File len.
 Private P_TEXT As String '-------------------------Holds the current stream's text.
 '////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,9 +69,9 @@ Public Property Get AtEndOfStream() As Boolean
 Attribute AtEndOfStream.VB_Description = "Gets the pointer’s overall status over the text stream."
     AtEndOfStream = P_ATENDOFSTREAM
 End Property
-Public Property Get BufferLen() As Long
-Attribute BufferLen.VB_Description = "Gets the number of string characters in the buffer."
-    BufferLen = P_BUFFERLENGTH
+Public Property Get BufferLength() As Long
+Attribute BufferLength.VB_Description = "Gets the number of string characters in the buffer."
+    BufferLength = P_BUFFERLENGTH
 End Property
 Public Property Get BufferSize() As Single
 Attribute BufferSize.VB_Description = "Gets or sets the buffer’s size, in MB, for text stream operations."
@@ -91,6 +92,10 @@ Attribute EndStreamOnLineBreak.VB_Description = "Allows to end buffer just after
 End Property
 Public Property Let EndStreamOnLineBreak(Value As Boolean)
     P_ENDSTREAMONLINEBREAK = Value
+End Property
+Public Property Get LineBreak() As String
+Attribute LineBreak.VB_Description = "Returns the character used to end the last received stream. The value is vbNullString when the last stream is not forced to end on line break."
+    LineBreak = P_LINEBREAK
 End Property
 Public Property Get PointerPosition() As Long
 Attribute PointerPosition.VB_Description = "Gets the overall pointer position over the current text file."
@@ -141,7 +146,14 @@ Attribute ReadText.VB_Description = "Reads a number of characters from the strea
                             Select Case BufferEnds
                                 Case False
                                     BufferEnds = (MidB$(Buffer, BufferMark - 1, 2) = vbLf)
+                                    If BufferEnds Then
+                                        P_LINEBREAK = vbLf
+                                    End If
+                                Case Else
+                                    P_LINEBREAK = vbCr
                             End Select
+                        Case Else
+                            P_LINEBREAK = vbCrLf
                     End Select
                     Do While Not BufferEnds
                         BufferMark = BufferMark - 2
@@ -153,7 +165,14 @@ Attribute ReadText.VB_Description = "Reads a number of characters from the strea
                                 Select Case BufferEnds
                                     Case False
                                         BufferEnds = (MidB$(Buffer, BufferMark - 1, 2) = vbLf)
+                                        If BufferEnds Then
+                                            P_LINEBREAK = vbLf
+                                        End If
+                                    Case Else
+                                        P_LINEBREAK = vbCr
                                 End Select
+                            Case Else
+                                P_LINEBREAK = vbCrLf
                         End Select
                     Loop
                     CorrectedPos = InitialPos - BufferDelta
@@ -162,6 +181,7 @@ Attribute ReadText.VB_Description = "Reads a number of characters from the strea
                     P_ATENDOFSTREAM = False
                     P_TEXT = MidB$(Buffer, 1, BufferMark)
                 Else
+                    P_LINEBREAK = vbNullString
                     LCS = P_STREAMLENGTH - InitialPos
                     P_ATENDOFSTREAM = False
                     P_TEXT = Buffer
