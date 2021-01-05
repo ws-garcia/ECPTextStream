@@ -16,7 +16,7 @@ ECPTextStream is an easy-to-use class module developed to enable buffered text s
 
 ## Getting started
 
-If you don't know how to get started with ECPTextStream class, visit the [documentation repo](https://ws-garcia.github.io/ECPTextStream/).
+If you don't know how to get started with ECPTextStream class, visit the [documentation repo](https://ws-garcia.github.io/ECPTextStream/). If you don't know if this tool can help you, take a look to this [sample project](https://ws-garcia.github.io/ECPTextStream/project_sample/).
 
 ## Contributing
 
