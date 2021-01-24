@@ -20,7 +20,7 @@ If you don't know how to get started with ECPTextStream class, visit the [docume
 
 ## Contributing
 
-In order to contribute whit in this project, please see the [guidance for contributing](https://ws-garcia.github.io/ECPTextStream/contributing.html).
+In order to contribute with in this project, please see the [guidance for contributing](https://ws-garcia.github.io/ECPTextStream/contributing.html).
 
 ## Benchmark
 
@@ -30,7 +30,7 @@ The benchmark results for ECPTextStream are available at [this site](https://ws-
 
 Visit [this site](https://ws-garcia.github.io/ECPTextStream/limitations/index.html) in order to known around file size considerations.
 
-## Licence
+## License
 
 Copyright (C) 2020  [W. García](https://github.com/ws-garcia/).
 
