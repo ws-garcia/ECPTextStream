@@ -1,11 +1,11 @@
 ---
-title: StreamLength
+title: streamLength
 parent: Properties
 grand_parent: API
-nav_order: 7
+nav_order: 9
 ---
 
-# StreamLength
+# streamLength
 {: .fs-9 }
 
 Gets the current opened file's size, in Bytes.
@@ -21,7 +21,7 @@ _ReadOnly_
 
 ## Syntax
 
-*expression*.`StreamLength`
+*expression*.`streamLength`
 
 ### Parameters
 

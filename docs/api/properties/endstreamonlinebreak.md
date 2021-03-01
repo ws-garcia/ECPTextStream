@@ -1,11 +1,11 @@
 ---
-title: EndStreamOnLineBreak
+title: endStreamOnLineBreak
 parent: Properties
 grand_parent: API
 nav_order: 5
 ---
 
-# EndStreamOnLineBreak
+# endStreamOnLineBreak
 {: .fs-9 }
 
 Allows to end buffer just after the first, from right to left, line break character.
@@ -23,8 +23,8 @@ _Yes_
 
 |**_Accesor_**|**_Syntax_**|
 |:----------|:----------|
-|Get|*expression*.`EndStreamOnLineBreak`|
-|Let|*expression*.`EndStreamOnLineBreak` = value|
+|Get|*expression*.`endStreamOnLineBreak`|
+|Let|*expression*.`endStreamOnLineBreak` = value|
 
 |**_Accesor_**|**_Parameters_**|
 |:----------|:----------|

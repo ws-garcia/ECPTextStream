@@ -1,11 +1,11 @@
 ---
-title: PointerPosition
+title: pointerPosition
 parent: Properties
 grand_parent: API
-nav_order: 6
+nav_order: 8
 ---
 
-# PointerPosition
+# pointerPosition
 {: .fs-9 }
 
 Gets the overall pointer position over the current text file.
@@ -21,7 +21,7 @@ _ReadOnly_
 
 ## Syntax
 
-*expression*.`PointerPosition`
+*expression*.`pointerPosition`
 
 ### Parameters
 

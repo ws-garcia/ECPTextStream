@@ -1,11 +1,11 @@
 ---
-title: BufferString
+title: bufferString
 parent: Properties
 grand_parent: API
 nav_order: 4
 ---
 
-# BufferString
+# bufferString
 {: .fs-9 }
 
 Gets the text data stored in the buffer.
@@ -21,7 +21,7 @@ _ReadOnly_
 
 ## Syntax
 
-*expression*.`BufferString`
+*expression*.`bufferString`
 
 ### Parameters
 

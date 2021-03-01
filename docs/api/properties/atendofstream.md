@@ -1,11 +1,11 @@
 ---
-title: AtEndOfStream
+title: atEndOfStream
 parent: Properties
 grand_parent: API
 nav_order: 1
 ---
 
-# AtEndOfStream
+# atEndOfStream
 {: .fs-9 }
 
 Gets the pointer's overall status over the text stream.
@@ -21,7 +21,7 @@ _ReadOnly_
 
 ## Syntax
 
-*expression*.`AtEndOfStream`
+*expression*.`atEndOfStream`
 
 ### Parameters
 
@@ -33,7 +33,7 @@ _None_
 
 >📝**Note**
 >{: .text-grey-lt-000 .bg-green-000 }
->The `AtEndOfStream` property returns `True` if the file pointer is at the end of a file, and `False` if not.
+>The `atEndOfStream` property returns `True` if the file pointer is at the end of a file, and `False` if not.
 {: .text-grey-dk-300 .bg-grey-lt-000 }
 
 See also
