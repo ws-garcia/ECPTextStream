@@ -37,7 +37,7 @@ See also
 
 ## Behavior
 
-Each call to the `ReadText` method will read a set of characters until the buffer size is reached. If the `EndStreamOnLineBreak` property is set to `True`, the stream will be cut on the first occurrence of a line break (CRLF, CR or LF) in back left sense (from right to left). The `ReadText` method will continue reading data until the pointer exceeds the length of the current streamed text file.
+Each call to the `ReadText` method will read a set of characters until the buffer size is reached. If the `EndStreamOnLineBreak` property is set to `True`, the stream will cut off at the first occurrence of a line break (CRLF, CR or LF) in the reverse left direction (from right to left) or add some extra data until a line break character in the forward direction is encountered. The `ReadText` method will continue reading data until the pointer exceeds the length of the current streamed text file.
 
 >📝**Note**
 >{: .text-grey-lt-000 .bg-green-000 }
