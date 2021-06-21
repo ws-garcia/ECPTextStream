@@ -23,6 +23,8 @@ Option Explicit
 '#
 '////////////////////////////////////////////////////////////////////////////////////////////
 ' CONSTANTS:
+Private Const DualLFchar As String = vbLf & vbLf
+Private Const InverseCRLF As String = vbLf & vbCr
 Private Const SizeFactor As Long = 524288
 '////////////////////////////////////////////////////////////////////////////////////////////
 '#
@@ -30,10 +32,12 @@ Private Const SizeFactor As Long = 524288
 ' PROPERTIES VARIABLES:
 Private P_ATENDOFSTREAM As Boolean '---------------Indicates if the file's end is reached.
 Private P_BUFFERLENGTH As Long '-------------------Number of chars in buffer.
-Private P_BUFFERSIZE As Single '-------------------Buffer's size in MB (0.5 by default).
+Private P_BUFFERSIZE As Single '-------------------Buffer's size x10 MB (0.5 by default).
 Private P_ENDSTREAMONLINEBREAK As Boolean '--------If true, each stream ends on a line break.
 Private P_ISOPENSTREAM As Boolean '----------------Indicates if the object is linked to a file
 Private P_LINEBREAK As String '--------------------Holds the char used to end a Stream.
+Private P_UNIFIEDLFOUTPUT As Boolean '-------------If true, the buffer string will be returned
+'                                                  with the LF char as Line Break.
 Private P_STREAMLENGTH As Long '-------------------File len.
 Private P_TEXT As String '-------------------------Holds the current stream's text.
 '////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,6 +88,9 @@ Public Property Let bufferSize(value As Single)
 End Property
 Public Property Get bufferString() As String
 Attribute bufferString.VB_Description = "Gets the text data stored in the buffer."
+    If P_UNIFIEDLFOUTPUT Then
+        NormalizeLineBreaks
+    End If
     bufferString = P_TEXT
 End Property
 Public Property Get endStreamOnLineBreak() As Boolean
@@ -112,6 +119,13 @@ Public Property Get streamLength() As Long
 Attribute streamLength.VB_Description = "Gets the current opened file’s size, in Bytes."
     streamLength = P_STREAMLENGTH
 End Property
+Public Property Get unifiedLFOutput() As Boolean
+Attribute unifiedLFOutput.VB_Description = "Determines whether the buffer string is returned using only the LF character as a linefeed."
+    unifiedLFOutput = P_UNIFIEDLFOUTPUT
+End Property
+Public Property Let unifiedLFOutput(value As Boolean)
+    P_UNIFIEDLFOUTPUT = value
+End Property
 '////////////////////////////////////////////////////////////////////////////////////////////
 '#
 '////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,10 +150,10 @@ Private Sub FindEOLcharacter()
 
     Do
         bufferReverse = StrReverse(Buffer)
-        LastCrLfPos = InStrB(1, bufferReverse, vbCrLf)
+        LastCrLfPos = InStrB(1, bufferReverse, InverseCRLF) + 2
         LastCrPos = InStrB(1, bufferReverse, vbCr)
         LastLfPos = InStrB(1, bufferReverse, vbLf)
-        missingEOLchar = (LastCrLfPos = 0 And LastCrPos = 0 And LastLfPos = 0)
+        missingEOLchar = (LastCrLfPos - 2 = 0 And LastCrPos = 0 And LastLfPos = 0)
         If missingEOLchar Then
             tmpBuffer = Buffer
             Get #FileHandled, , Buffer
@@ -185,6 +199,15 @@ Private Sub FindEOLcharacter()
         CorrectedPos = InitialPos
     End If
     Seek #FileHandled, CorrectedPos
+End Sub
+Private Sub NormalizeLineBreaks()
+    If InStrB(1, P_TEXT, vbCr, vbBinaryCompare) > 0 Then
+        P_TEXT = Replace(P_TEXT, vbCr, vbLf, 1)
+    End If
+    Do While InStrB(1, P_TEXT, DualLFchar, vbBinaryCompare) > 0
+        P_TEXT = Replace(P_TEXT, DualLFchar, vbLf, 1)
+    Loop
+    P_LINEBREAK = vbLf
 End Sub
 Public Sub OpenStream(filePath As String)
 Attribute OpenStream.VB_Description = "Opens a stream over a text file."
@@ -285,6 +308,7 @@ Private Sub Class_Initialize()
     P_BUFFERSIZE = 0.5
     P_BUFFERLENGTH = CLng(P_BUFFERSIZE * SizeFactor)
     P_ENDSTREAMONLINEBREAK = False
+    P_UNIFIEDLFOUTPUT = False
     Buffer = SPACE$(P_BUFFERLENGTH)
     NullChar = ChrW(0)
 End Sub
