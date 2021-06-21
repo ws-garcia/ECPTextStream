@@ -1,21 +1,21 @@
 ---
-title: RestartPointer
+title: RestartStreamReader
 parent: Methods
 grand_parent: API
 nav_order: 4
 ---
 
-# RestartPointer
+# RestartStreamReader
 {: .fs-9 }
 
-Moves the pointer to the text stream’s beginning position.
+Moves the pointer to the initial position of the stream and clears the buffer.
 {: .fs-6 .fw-300 }
 
 ---
 
 ## Syntax
 
-*expression*.`RestartPointer`
+*expression*.`RestartStreamReader`
 
 ### Parameters
 
@@ -27,7 +27,7 @@ _None_
 
 >📝**Note**
 >{: .text-grey-lt-000 .bg-green-000 }
->User must open a stream before try to move a pointer over the text file.
+>The user must open a flow before attempting to restart the reader.
 {: .text-grey-dk-300 .bg-grey-lt-000 }
 
 See also

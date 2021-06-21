@@ -31,7 +31,7 @@ _None_
 {: .text-grey-dk-300 .bg-grey-lt-000 }
 
 See also
-: [RestartPointer method](https://ws-garcia.github.io/ECPTextStream/api/methods/restartpointer.html).
+: [RestartStreamReader method](https://ws-garcia.github.io/ECPTextStream/api/methods/restartstreamreader.html).
 
 ---
 

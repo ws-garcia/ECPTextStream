@@ -32,7 +32,7 @@ _None_
 *Type*: `Long`
 
 See also
-: [RestartPointer method](https://ws-garcia.github.io/ECPTextStream/api/methods/restartpointer.html), [SeekPointer method](https://ws-garcia.github.io/ECPTextStream/api/methods/seekpointer.html).
+: [RestartStreamReader method](https://ws-garcia.github.io/ECPTextStream/api/methods/restartstreamreader.html), [SeekPointer method](https://ws-garcia.github.io/ECPTextStream/api/methods/seekpointer.html).
 
 ---
 
