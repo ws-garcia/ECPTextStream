@@ -120,7 +120,6 @@ Attribute streamLength.VB_Description = "Gets the current opened file’s size, in
     streamLength = P_STREAMLENGTH
 End Property
 Public Property Get unifiedLFOutput() As Boolean
-Attribute unifiedLFOutput.VB_Description = "Determines whether the buffer string is returned using only the LF character as a linefeed."
     unifiedLFOutput = P_UNIFIEDLFOUTPUT
 End Property
 Public Property Let unifiedLFOutput(value As Boolean)
@@ -150,10 +149,11 @@ Private Sub FindEOLcharacter()
 
     Do
         bufferReverse = StrReverse(Buffer)
-        LastCrLfPos = InStrB(1, bufferReverse, InverseCRLF) + 2
+        LastCrLfPos = InStrB(1, bufferReverse, InverseCRLF)
+        If LastCrLfPos Then LastCrLfPos = LastCrLfPos + 2
         LastCrPos = InStrB(1, bufferReverse, vbCr)
         LastLfPos = InStrB(1, bufferReverse, vbLf)
-        missingEOLchar = (LastCrLfPos - 2 = 0 And LastCrPos = 0 And LastLfPos = 0)
+        missingEOLchar = (LastCrLfPos = 0 And LastCrPos = 0 And LastLfPos = 0)
         If missingEOLchar Then
             tmpBuffer = Buffer
             Get #FileHandled, , Buffer
@@ -201,10 +201,10 @@ Private Sub FindEOLcharacter()
     Seek #FileHandled, CorrectedPos
 End Sub
 Private Sub NormalizeLineBreaks()
-    If InStrB(1, P_TEXT, vbCr, vbBinaryCompare) > 0 Then
+    If InStrB(1, P_TEXT, vbCr, vbBinaryCompare) Then
         P_TEXT = Replace(P_TEXT, vbCr, vbLf, 1)
     End If
-    Do While InStrB(1, P_TEXT, DualLFchar, vbBinaryCompare) > 0
+    Do While InStrB(1, P_TEXT, DualLFchar, vbBinaryCompare)
         P_TEXT = Replace(P_TEXT, DualLFchar, vbLf, 1)
     Loop
     P_LINEBREAK = vbLf
@@ -257,9 +257,9 @@ Attribute RestartPointer.VB_Description = "Moves the pointer to the text stream’
 End Sub
 Public Sub SeekPointer(Position As Long)
 Attribute SeekPointer.VB_Description = "Moves the pointer, over the target file, to the specified position."
-    If Position > 0 Then
+    If Position Then
         If P_ISOPENSTREAM Then
-            If P_STREAMLENGTH > 0 Then
+            If P_STREAMLENGTH Then
                 Seek #FileHandled, Position
                 CorrectedPos = Seek(FileHandled)
                 LCS = P_STREAMLENGTH - CorrectedPos
