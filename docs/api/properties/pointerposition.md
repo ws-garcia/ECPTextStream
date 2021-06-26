@@ -2,7 +2,7 @@
 title: pointerPosition
 parent: Properties
 grand_parent: API
-nav_order: 8
+nav_order: 9
 ---
 
 # pointerPosition
