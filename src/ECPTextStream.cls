@@ -37,6 +37,7 @@ Private P_BUFFERSIZE As Single '-------------------Buffer's size x10 MB (0.5 by 
 Private P_ENDSTREAMONLINEBREAK As Boolean '--------If true, each stream ends on a line break.
 Private P_ISOPENSTREAM As Boolean '----------------Indicates if the object is linked to a file
 Private P_LINEBREAK As String '--------------------Holds the char used to end a Stream.
+Private P_LINEBREAKMATCHINGBEHAVIOR As EndLineMatchingBehavior 'How to find the next line break.
 Private P_UNIFIEDLFOUTPUT As Boolean '-------------If true, the buffer string will be returned
 '                                                  with the LF char as Line Break.
 Private P_STREAMLENGTH As Long '-------------------File len.
@@ -70,6 +71,10 @@ Public Enum EndLineChar
     CRLF = 0
     CR = 1
     LF = 2
+End Enum
+Public Enum EndLineMatchingBehavior
+    OnlyBackwardSense = 0 'From the end to the beginning of the buffer.
+    Bidirectional = 1 'Find the line break in both directions.
 End Enum
 '////////////////////////////////////////////////////////////////////////////////////////////
 '#
@@ -111,6 +116,12 @@ End Property
 Public Property Get lineBreak() As String
 Attribute lineBreak.VB_Description = "Returns the character used to end the last received stream. The value is vbNullString when the last stream is not forced to end on line break."
     lineBreak = P_LINEBREAK
+End Property
+Public Property Get linebreakMatchingBehavior() As EndLineMatchingBehavior
+    linebreakMatchingBehavior = P_LINEBREAKMATCHINGBEHAVIOR
+End Property
+Public Property Let linebreakMatchingBehavior(value As EndLineMatchingBehavior)
+    P_LINEBREAKMATCHINGBEHAVIOR = value
 End Property
 Public Property Get pointerPosition() As Long
 Attribute pointerPosition.VB_Description = "Gets the overall pointer position over the current text file."
@@ -160,21 +171,23 @@ Private Sub FindEOLcharacter()
     Dim EOLchr As EndLineChar
     Dim missingEOLchar As Boolean
     Dim EOStream As Boolean
-
-    Do
-        CrCharInStream = InStrB(1, Buffer, vbCr)
-        LfCharInStream = InStrB(1, Buffer, vbLf)
-        missingEOLchar = (Not CrCharInStream) And (Not LfCharInStream)
-        If missingEOLchar Then
-            DoubleBufferSize
-            SeekPointer TmpInitialPos
-            Get #FileHandled, , Buffer
-            InitialPos = Seek(FileHandled)
-            BufferMark = LenB(Buffer)
-            EOStream = (P_STREAMLENGTH <= InitialPos)
-        End If
-    Loop While missingEOLchar And Not EOStream
-    P_ATENDOFSTREAM = EOStream
+    
+    If P_LINEBREAKMATCHINGBEHAVIOR = EndLineMatchingBehavior.Bidirectional Then
+        Do
+            CrCharInStream = InStrB(1, Buffer, vbCr)
+            LfCharInStream = InStrB(1, Buffer, vbLf)
+            missingEOLchar = (Not CrCharInStream) And (Not LfCharInStream)
+            If missingEOLchar Then
+                DoubleBufferSize
+                SeekPointer TmpInitialPos
+                Get #FileHandled, , Buffer
+                InitialPos = Seek(FileHandled)
+                BufferMark = LenB(Buffer)
+                EOStream = (P_STREAMLENGTH <= InitialPos)
+            End If
+        Loop While missingEOLchar And Not EOStream
+        P_ATENDOFSTREAM = EOStream
+    End If
     If Not EOStream Then
         If Not missingEOLchar Then
             Last2Chrs = MidB$(Buffer, BufferMark - 3, 4)
@@ -343,6 +356,7 @@ Private Sub Class_Initialize()
     P_BUFFERSIZE = 0.5
     P_BUFFERLENGTH = CLng(P_BUFFERSIZE * SizeFactor)
     P_ENDSTREAMONLINEBREAK = False
+    P_LINEBREAKMATCHINGBEHAVIOR = EndLineMatchingBehavior.Bidirectional
     P_UNIFIEDLFOUTPUT = False
     Buffer = SPACE$(P_BUFFERLENGTH)
     NullChar = ChrW(0)
