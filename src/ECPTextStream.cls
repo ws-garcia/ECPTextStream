@@ -170,6 +170,20 @@ Attribute CloseStream.VB_Description = "Closes the current text file stream."
         P_PATH = vbNullString
     End If
 End Sub
+Private Sub CreateSubFolders(FullFilePath As String)
+    Dim cPath As String
+    Dim SubFolders() As String
+    Dim j As Long
+    
+    SubFolders() = Split(FullFilePath, "\")
+    cPath = SubFolders(LBound(SubFolders))
+    For j = LBound(SubFolders) + 1 To UBound(SubFolders) - 1
+        cPath = cPath & "\" & SubFolders(j)
+        If Not FolderExists(cPath) Then
+            MkDir cPath           'Create the subdirectory
+        End If
+    Next j
+End Sub
 Private Sub DoubleBufferSize()
     Dim LCSt As Long
     P_BUFFERSIZE = 2 * P_BUFFERSIZE
@@ -238,6 +252,9 @@ Private Sub FindEOLcharacter()
     End If
     Seek #FileHandled, CorrectedPos
 End Sub
+Private Function FolderExists(ByVal filePath As String) As Boolean
+    FolderExists = CBool(LenB(Dir(filePath, vbDirectory)))
+End Function
 Private Sub GoBackToLineBreak()
     Do
         BufferMark = BufferMark - 2
@@ -275,9 +292,9 @@ Private Sub NormalizeLineBreaks()
     P_LINEBREAK = vbLf
 End Sub
 Public Sub OpenStream(filePath As String)
-Attribute OpenStream.VB_Description = "Opens a stream over a text file."
     If P_PATH <> filePath Then
         FileHandled = FreeFile
+        CreateSubFolders filePath
         Open filePath For Binary As #FileHandled
         P_ISOPENSTREAM = True
         P_STREAMLENGTH = LOF(FileHandled)
@@ -346,10 +363,10 @@ Private Sub StartVariables()
     P_ATENDOFSTREAM = False
 End Sub
 Public Function UTF8Decode(ByVal sStr As String) As String
-    Dim l As Long, sUTF8 As CSVArrayList, iChar As Long, iChar2 As Long
+    Dim l As Long, sUTF8 As ECPArrayList, iChar As Long, iChar2 As Long
     
     On Error GoTo UTF8_Decode_error
-    Set sUTF8 = New CSVArrayList
+    Set sUTF8 = New ECPArrayList
     For l = 1 To LenB(sStr) Step 2
         iChar = Asc(MidB$(sStr, l, 2))
         If iChar > 127 Then
