@@ -7,6 +7,7 @@ ECPTextStream is an easy-to-use class module developed to enable buffered text s
 
 ## Advantages
 * The fastest way for I/O operations over "big" text files from VBA (up to 600 MB/sec.).
+  ![Benchmark](/docs/home/TextRead-Benchmark.png)
 * Supports files up to 2 GB of size.
 * Supports streams delimited by CRLF, LF and CR characters. This is useful when working with structured files like CSVs.
 * No memory overloads. Text files being read using a buffer, small enough to hold a single data line. 
